@@ -7,7 +7,7 @@ Simple fun game created with Vue.js.
 * [How to run](#how-to-run)
 
 ## Basic informations
-This project is simple fun game.
+This project is a simple fun game.
 Just add tasks and randomly draw one of them.
 
 ## Technologies
