@@ -8,7 +8,7 @@
       </button>
       <tasks-list v-on:list-change="onListChange" :list="tasksList"/>
       <transition name="slide-fade">
-        <span class="error task-list__error" v-show="errorNumber">Please add at least two tasks.</span>
+        <span class="error task-list__error" v-show="errorNumber">Please, add at least two tasks.</span>
       </transition>
       <input
         class="input-task input"
@@ -21,7 +21,7 @@
         <span
           class="input-task__error error"
           v-show="errorLength"
-        >Please enter at least one character.</span>
+        >Please, enter at least one character.</span>
       </transition>
       <button type="submit" class="button--second button--add button">Add task</button>
     </form>
@@ -88,6 +88,9 @@ export default {
     onListChange(list) {
       this.rolledTask = "Click to roll";
       this.tasksList = list;
+      if(this.errorNumber == true && this.tasksList.length > 1){
+        this.errorNumber = false;
+      }
     },
     // Clear all tasks
     clear() {
