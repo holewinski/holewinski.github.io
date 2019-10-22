@@ -18,7 +18,7 @@ Project is created with:
 * Icons are "Font Awesome" - https://fontawesome.com/
 
 ## How to run
-To run this project in developer version youn will nedd webpack with vue cli and scss compiler.
+To run this project in developer version you will need webpack with vue cli and scss compiler.
 Clone files from "dev" folder to your webpack folder and run with:
 ```
 $ npm run dev
