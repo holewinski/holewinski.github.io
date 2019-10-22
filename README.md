@@ -6,7 +6,7 @@ Simple fun game created with Vue.js.
 * [Technologies](#technologies)
 * [How to run](#how-to-run)
 
-##Basic informations
+## Basic informations
 This project is simple fun game.
 Just add tasks and randomly draw one of them.
 
