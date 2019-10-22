@@ -1,0 +1,48 @@
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+
+  45% {
+    transform: rotate(162deg);
+    opacity: 0;
+  }
+
+  55% {
+    transform: rotate(198deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    opacity: 1;
+  }
+}
+.rotate-fade-enter-active{
+  transition-delay: 0.5s;
+  transition-duration:0.3s;
+
+}
+.rotate-fade-leave-active{
+  transition-duration:0.3s;
+  
+}
+.rotate-fade-enter,
+.rotate-fade-leave-to {
+  transform:rotate(360deg);
+  right: -100px !important ;
+
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: 0.3s;
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+  opacity: 0;
+  top: 90% !important;
+
+}
