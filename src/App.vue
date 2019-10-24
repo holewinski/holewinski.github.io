@@ -6,7 +6,7 @@
         Lets
         roll
       </button>
-      <tasks-list v-on:list-change="onListChange" :list="tasksList"/>
+      <tasks-list v-on:list-change="onListChange" :list="tasksList" />
       <transition name="slide-fade">
         <span class="error task-list__error" v-show="errorNumber">Please, add at least two tasks.</span>
       </transition>
@@ -63,7 +63,7 @@ export default {
   data() {
     return {
       mainTask: "",
-      tasksList:[],
+      tasksList: [],
       rolledTask: "Click to roll",
       errorLength: false,
       errorNumber: false,
@@ -84,18 +84,17 @@ export default {
     };
   },
   methods: {
-   
     onListChange(list) {
       this.rolledTask = "Click to roll";
       this.tasksList = list;
-      if(this.errorNumber == true && this.tasksList.length > 1){
+      if (this.errorNumber == true && this.tasksList.length > 1) {
         this.errorNumber = false;
       }
     },
     // Clear all tasks
     clear() {
       this.tasksList = [];
-      console.log(this.tasksList)
+      console.log(this.tasksList);
     },
     //Function adding new task to task list
     addTask() {
@@ -128,12 +127,11 @@ export default {
           h1 = Math.floor(Math.random() * 360),
           h2 = Math.floor(Math.random() * 360);
         this.rolling = true;
-        this.backgroundArray[0].backgroundImage =
-          "linear-gradient(to top right, hsl(" +
-          h1 +
-          ", 95%, 15%), hsl(" +
-          h2 +
-          ", 95%, 80%))";
+        this.backgroundArray[0].backgroundImage = `linear-gradient(to top right, hsl(
+          ${h1}
+          , 95%, 15%), hsl(
+          ${h2}
+          , 95%, 80%))`;
         this.backgroundArray[0].opacity = 1;
         this.backgroundArray[1].opacity = 0;
 
@@ -146,7 +144,7 @@ export default {
       }
     }
   },
-  
+
   components: {
     TasksList
   }
