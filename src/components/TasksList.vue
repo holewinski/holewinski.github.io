@@ -1,7 +1,7 @@
 <template>
   <ul class="task-list">
     <task
-      v-for="(task,index) in TasksList"
+      v-for="(task,index) in tasksList"
       :active="active"
       :task="task.cont"
       :index="index"
@@ -15,41 +15,39 @@
 <script>
 import TasksListElement from "../components/TasksListElement";
 
-
 export default {
-    props:['list'],
+  props: ["list"],
   name: "TasksList",
   data() {
     return {
-      TasksList: this.list,
-      active: null,
-
+      tasksList: this.list,
+      active: null
     };
   },
-  methods:{
-      changeActive(index) {
+  methods: {
+    changeActive(index) {
       this.active = index;
     },
-    
+
     onDeleteTask(a) {
-      this.TasksList.splice(a, 1);
+      this.tasksList.splice(a, 1);
     },
     onChange(task, index) {
       let str = task.trim();
       if (str.length > 0) {
-        this.TasksList[index].cont = task;
+        this.tasksList[index].cont = task;
       }
-    },
+    }
   },
   watch: {
-    TasksList: {
+    tasksList: {
       deep: true,
       handler() {
-        this.$emit('list-change',this.TasksList)
-        if (this.TasksList.length > 1 && this.errorNumber == true) {
-          this.errorNumber = false;
-        }
+        this.$emit("list-change", this.tasksList);
       }
+    },
+    list: function(oldVal,newVal){
+      this.tasksList = this.list
     }
   },
   components: {
