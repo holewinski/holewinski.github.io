@@ -1,14 +1,14 @@
 <template>
   <ul class="task-list">
     <task
-      v-for="(task,index) in tasksList"
+      v-for="({cont},index) in tasksList"
       :active="active"
-      :task="task.cont"
+      :task="cont"
       :index="index"
       v-on:delete-task="onDeleteTask"
       v-on:change-task="onChange"
       v-on:change-active="changeActive"
-      :key="index"
+      :key="cont+'-'+index"
     />
   </ul>
 </template>
@@ -20,7 +20,7 @@ export default {
   name: "TasksList",
   data() {
     return {
-      tasksList: this.list,
+      tasksList:[],
       active: null
     };
   },
@@ -31,6 +31,7 @@ export default {
 
     onDeleteTask(a) {
       this.tasksList.splice(a, 1);
+      console.log(a)
     },
     onChange(task, index) {
       let str = task.trim();
@@ -38,6 +39,9 @@ export default {
         this.tasksList[index].cont = task;
       }
     }
+  },
+  created() {
+    this.tasksList = this.list
   },
   watch: {
     tasksList: {

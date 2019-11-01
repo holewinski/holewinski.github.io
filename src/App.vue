@@ -57,9 +57,6 @@ import TasksList from "./components/TasksList";
 
 export default {
   name: "App",
-  props: {
-    endpoint: String
-  },
   data() {
     return {
       mainTask: "",
@@ -94,7 +91,6 @@ export default {
     // Clear all tasks
     clear() {
       this.tasksList = [];
-      console.log(this.tasksList);
     },
     //Function adding new task to task list
     addTask() {

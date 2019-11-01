@@ -43,12 +43,11 @@ export default {
     }
   },
   watch: {
-    propTask: function(newTask, oldTask)  {
-      if(newTask > 0){
+    propTask: function(newTask, oldTask) {
+      if (newTask > 0) {
         this.error = false;
         this.$emit("change-task", newTask, this.index);
-
-      } else{
+      } else {
         this.error = true;
       }
     }
