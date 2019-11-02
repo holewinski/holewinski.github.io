@@ -1,16 +1,16 @@
 <template>
-  <ul class="task-list">
+  <transition-group tag="ul" name="slide-left" class="task-list">
     <task
-      v-for="({cont},index) in tasksList"
+      v-for="({cont,id},index) in tasksList"
       :active="active"
       :task="cont"
       :index="index"
       v-on:delete-task="onDeleteTask"
       v-on:change-task="onChange"
       v-on:change-active="changeActive"
-      :key="cont+'-'+index"
+      :key="`#${id}-${cont}`"
     />
-  </ul>
+  </transition-group>
 </template>
 <script>
 import TasksListElement from "../components/TasksListElement";

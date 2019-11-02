@@ -15,6 +15,8 @@
         placeholder="Input task"
         :class="{'input--error': errorLength}"
         type="text"
+        onblur="this.focus()" 
+        autofocus
         v-model="mainTask"
       />
       <transition name="slide-fade">
@@ -61,6 +63,7 @@ export default {
     return {
       mainTask: "",
       tasksList: [],
+      taskIndex:0,
       rolledTask: "Click to roll",
       errorLength: false,
       errorNumber: false,
@@ -100,10 +103,11 @@ export default {
       if (str.length > 0) {
         str = str.charAt(0).toUpperCase() + str.slice(1);
         // Push task to task list
-        this.tasksList.push({ cont: str });
+        this.tasksList.push({ cont: str, id: this.taskIndex });
         // Clear input
         this.mainTask = "";
         this.errorLength = false;
+        this.taskIndex++;
       } else {
         this.errorLength = true;
       }
