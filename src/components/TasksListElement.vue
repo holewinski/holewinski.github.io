@@ -1,11 +1,14 @@
 <template>
-  <li @click="$emit('change-active',index)" class="task" :class="{edit : edit}">
+  <li @click="$emit('change-active',id)" class="task" :class="{edit : edit}">
     <input
       type="text"
       :readonly="!edit"
       class="task__text input"
       :class="{readonly : !edit,'input--error':error}"
-      v-model.lazy="propTask"
+      v-model="propTask"
+      :size="propTask.length"
+      v-on:keyup="typingTimer"
+      v-on:keydown="clearTimeout"
     />
     <button type="button" class="button" @click="$emit('delete-task',index)">
       <svg
@@ -33,23 +36,38 @@ export default {
   data() {
     return {
       readonly: true,
-      propTask: this.task,
-      error: false
+      propTask: this.task.cont,
+      id: this.task.id,
+      error: false,
+      timer: null,
+      interval: 2000
     };
   },
-  computed: {
-    edit() {
-      return this.active == this.index ? true : false;
-    }
+  computed:{
+
   },
-  watch: {
-    propTask: function(newTask, oldTask) {
-      if (newTask > 0) {
+  methods: {
+    typingTimer() {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(this.changeEmmit, this.interval);
+    },
+    clearTimeout() {
+      console.log(2,this.timer)
+      clearTimeout(this.timer);
+    },
+    changeEmmit() {
+      console.log(3)
+      if (this.propTask.length > 0) {
         this.error = false;
-        this.$emit("change-task", newTask, this.index);
+        this.$emit("change-task", this.propTask, this.id);
       } else {
         this.error = true;
       }
+    }
+  },
+  computed: {
+    edit() {
+      return this.active == this.id ? true : false;
     }
   }
 };

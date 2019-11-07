@@ -1,9 +1,9 @@
 <template>
   <transition-group tag="ul" name="slide-left" class="task-list">
     <task
-      v-for="({cont,id},index) in tasksList"
+      v-for="({cont,id},index) in reverseList"
       :active="active"
-      :task="cont"
+      :task="{cont,id}"
       :index="index"
       v-on:delete-task="onDeleteTask"
       v-on:change-task="onChange"
@@ -24,19 +24,25 @@ export default {
       active: null
     };
   },
+  computed:{
+    reverseList(){
+      return this.tasksList.slice().reverse();
+    }
+  },  
   methods: {
-    changeActive(index) {
-      this.active = index;
+    changeActive(id) {
+      this.active = id;
     },
 
     onDeleteTask(a) {
-      this.tasksList.splice(a, 1);
+      let index = this.tasksList.length -1 - a;
+      this.tasksList.splice(index, 1);
       console.log(a)
     },
-    onChange(task, index) {
+    onChange(task, id) {
       let str = task.trim();
       if (str.length > 0) {
-        this.tasksList[index].cont = task;
+        this.tasksList[id].cont = task;
       }
     }
   },
