@@ -1,14 +1,14 @@
 <template>
   <transition-group tag="ul" name="slide-left" class="task-list">
     <task
-      v-for="({cont,id},index) in reverseList"
+      v-for="({cont,id}) in reverseList"
       :active="active"
-      :task="{cont,id}"
-      :index="index"
-      v-on:delete-task="onDeleteTask"
-      v-on:change-task="onChange"
-      v-on:change-active="changeActive"
-      :key="`#${id}-${cont}`"
+      :task="cont"
+      :id="id"
+      @delete-task="onDeleteTask"
+      @change-task="onChange"
+      @change-active="changeActive"
+      :key="`#${id}`"
     />
   </transition-group>
 </template>
@@ -27,22 +27,27 @@ export default {
   computed:{
     reverseList(){
       return this.tasksList.slice().reverse();
+    },
+    index(id){
+     return  this.tasksList.findIndex(item => item.id == id);
     }
   },  
   methods: {
     changeActive(id) {
+        const index = this.tasksList.findIndex(item => item.id == id);
+
       this.active = id;
     },
 
-    onDeleteTask(a) {
-      let index = this.tasksList.length -1 - a;
+    onDeleteTask(id) {
+      const index = this.tasksList.findIndex(item => item.id == id);
       this.tasksList.splice(index, 1);
-      console.log(a)
     },
     onChange(task, id) {
-      let str = task.trim();
+      const str = task.trim();
       if (str.length > 0) {
-        this.tasksList[id].cont = task;
+        const index = this.tasksList.findIndex(item => item.id == id);
+        this.tasksList[index].cont = task;
       }
     }
   },

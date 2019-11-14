@@ -1,16 +1,17 @@
 <template>
-  <li @click="$emit('change-active',id)" class="task" :class="{edit : edit}">
+  <li @click="$emit('change-active', id)" class="task" :class="{ edit: edit }">
     <input
       type="text"
       :readonly="!edit"
       class="task__text input"
-      :class="{readonly : !edit,'input--error':error}"
+      :class="{ readonly: !edit, 'input--error': error }"
       v-model="propTask"
-      :size="propTask.length"
+      :size="taskLength"
+      :maxlength="maxLength"
       v-on:keyup="typingTimer"
       v-on:keydown="clearTimeout"
     />
-    <button type="button" class="button" @click="$emit('delete-task',index)">
+    <button type="button" class="button" @click="$emit('delete-task', id)">
       <svg
         aria-hidden="true"
         focusable="false"
@@ -32,19 +33,24 @@
 <script>
 export default {
   name: "TasksListElement",
-  props: ["task", "index", "active"],
+  props: ["task", "id", "active"],
   data() {
     return {
       readonly: true,
-      propTask: this.task.cont,
-      id: this.task.id,
+      propTask: this.task,
       error: false,
       timer: null,
-      interval: 2000
+      interval: 1000,
+      maxLength: 115
     };
   },
-  computed:{
-
+  computed: {
+    edit() {
+      return this.active == this.id ? true : false;
+    },
+    taskLength() {
+      return this.propTask.length;
+    }
   },
   methods: {
     typingTimer() {
@@ -52,22 +58,15 @@ export default {
       this.timer = setTimeout(this.changeEmmit, this.interval);
     },
     clearTimeout() {
-      console.log(2,this.timer)
       clearTimeout(this.timer);
     },
     changeEmmit() {
-      console.log(3)
-      if (this.propTask.length > 0) {
+      if (this.taskLength > 0) {
         this.error = false;
         this.$emit("change-task", this.propTask, this.id);
       } else {
         this.error = true;
       }
-    }
-  },
-  computed: {
-    edit() {
-      return this.active == this.id ? true : false;
     }
   }
 };

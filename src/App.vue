@@ -49,6 +49,7 @@
 
     <main class="board" @click="roll" :class="{rolling : rolling}">
       <span class="board-task" :class="{'op-0': !play}">{{ rolledTask }}</span>
+
       <div v-for="(n,index) in backgroundArray" class="background" :style="n" :key="index"></div>
     </main>
   </div>
