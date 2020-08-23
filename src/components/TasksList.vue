@@ -1,7 +1,7 @@
 <template>
   <transition-group tag="ul" name="slide-left" class="task-list">
     <task
-      v-for="({cont,id}) in reverseList"
+      v-for="{ cont, id } in reverseList"
       :active="active"
       :task="cont"
       :id="id"
@@ -20,21 +20,21 @@ export default {
   name: "TasksList",
   data() {
     return {
-      tasksList:[],
+      tasksList: [],
       active: null
     };
   },
-  computed:{
-    reverseList(){
+  computed: {
+    reverseList() {
       return this.tasksList.slice().reverse();
     },
-    index(id){
-     return  this.tasksList.findIndex(item => item.id == id);
+    index(id) {
+      return this.tasksList.findIndex(item => item.id == id);
     }
-  },  
+  },
   methods: {
     changeActive(id) {
-        const index = this.tasksList.findIndex(item => item.id == id);
+      const index = this.tasksList.findIndex(item => item.id == id);
 
       this.active = id;
     },
@@ -52,7 +52,7 @@ export default {
     }
   },
   created() {
-    this.tasksList = this.list
+    this.tasksList = this.list;
   },
   watch: {
     tasksList: {
@@ -61,8 +61,8 @@ export default {
         this.$emit("list-change", this.tasksList);
       }
     },
-    list: function(oldVal,newVal){
-      this.tasksList = this.list
+    list: function(oldVal, newVal) {
+      this.tasksList = this.list;
     }
   },
   components: {

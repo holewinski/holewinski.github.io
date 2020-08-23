@@ -4,3 +4,12 @@ $font-size-input:17px;
 $faint-black:rgb(43, 43, 43);
 $faint-black-trans:rgb(49, 49, 49);
 $border-radius: 3px;
+$orange:rgb(219, 132, 1);
+$orange-fainted:rgb(168, 101, 1);
+$main-color:$orange;
+$main-color-fainted:$orange-fainted;
+
+//Layout diameters
+
+$grid-row-gap:10px;
+$grid-column-gap:$grid-row-gap;

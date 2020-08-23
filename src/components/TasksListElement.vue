@@ -11,7 +11,11 @@
       v-on:keyup="typingTimer"
       v-on:keydown="clearTimeout"
     />
-    <button type="button" class="button" @click="$emit('delete-task', id)">
+    <button
+      type="button"
+      class="button button--basic button--square"
+      @click="$emit('delete-task', id)"
+    >
       <svg
         aria-hidden="true"
         focusable="false"
