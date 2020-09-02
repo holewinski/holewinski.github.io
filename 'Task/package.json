@@ -1,21 +1,18 @@
 {
-  "name": "task-roulette",
+  "name": "task-rouletter",
   "version": "1.0.0",
-  "private": true,
   "description": "A Vue.js project",
   "author": "holewinski <szymon.holewinski@gmail.com>",
+  "private": true,
   "scripts": {
-    "build": "node build/build.js",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "build": "node build/build.js"
   },
   "dependencies": {
-    "register-service-worker": "^1.7.1",
-    "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue": "^2.5.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-pwa": "^4.5.4",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
@@ -52,13 +49,13 @@
     "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.0"
   },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ],
-  "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
-  }
+  ]
 }

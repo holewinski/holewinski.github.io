@@ -1,0 +1,215 @@
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.gears {
+
+
+  .svg-inline--fa {
+    height: 40px;
+  }
+}
+
+.op-0 {
+  opacity: 0;
+  transition-delay: 0s !important;
+}
+
+.svg-inline--fa {
+  height: 1em;
+}
+
+.error {
+  background: rgba(0, 0, 0, 0.432);
+  color: rgb(255, 255, 255);
+  font-size: 12px;
+  padding: 5px;
+  border-radius: $border-radius;
+  text-align: center;
+}
+
+.app {
+  height: 100vh;
+
+  &__inside {
+    width: 100%;
+    height: calc(100% - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 20px 0 40px;
+
+    .form {
+      position: relative;
+      z-index: 2;
+      padding: 0 20px;
+      height: 100%;
+      width: 100%;
+      max-width: 1000px;
+      display: grid;
+      transition: 0.8s;
+
+
+      &:after {
+        content: '';
+        display: block;
+        width: 100vw;
+        height: calc(100% + 60px);
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.4);
+        z-index: -1;
+      }
+
+      &.hide {
+        transform: translateX(100vw)
+      }
+
+
+
+      .input {
+        background-color: $faint-black;
+        color: rgb(200, 200, 200);
+        border: none;
+        font-size: $font-size-input;
+        caret-color: rgb(88, 0, 146);
+
+        &--error {
+          box-shadow: 0px 0px 10px 3px rgb(207, 0, 35);
+
+        }
+      }
+
+      .task-list {
+        padding-left: 0;
+        list-style: none;
+        grid-area: main;
+        overflow-y: auto;
+
+        &__error {
+          grid-area: main;
+          width: 100%;
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+        }
+
+        .task {
+          margin: 5px 0;
+          padding: 5px 0;
+          display: flex;
+          position: relative;
+          justify-content: center;
+          border-radius: 2px;
+          transition: $transition-time;
+
+          .task__text {
+            transition: $transition-time;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            background-color: transparent;
+            border-bottom: 1px solid transparent;
+            color: #fff;
+          }
+
+
+
+          &.edit {
+            background-color: rgba(0, 0, 0, 0.2);
+
+            .task__text {
+
+              border-color: rgba(255, 255, 255, 0.8);
+
+            }
+
+            button {
+              opacity: 1;
+              transform: scale(1)
+            }
+          }
+        }
+      }
+
+      .input-task {
+        grid-area: input;
+        transition: box-shadow 0.2s;
+        padding: 5px;
+        border-radius: $border-radius;
+
+
+        &__error {
+          grid-area: input;
+          position: absolute;
+          width: calc(100% - 10px);
+          top: 0;
+          transform: translateY(-100%);
+          left: 0%;
+
+        }
+      }
+    }
+
+    .board {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      background: #000;
+
+
+      .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-image: linear-gradient(to right top, rgb(151, 0, 0), rgb(114, 155, 0));
+      }
+
+      .board-task {
+        user-select: none;
+        z-index: 1;
+        font-size: 50px;
+        color: #fff;
+        font-weight: 700;
+        transition: opacity 0.3s;
+        transition-delay: 0.3s;
+        text-align: center;
+        max-width: 100%;
+        text-shadow: -1px 0 black,
+          0 1px black,
+          1px 0 black,
+          0 -1px black,
+          3px 3px 3px rgba(0, 0, 0, 0.7);
+      }
+
+      &.rolling {
+
+        .background {
+          transition: 1s;
+        }
+
+        .board-task {
+          animation: rotate 1s;
+        }
+      }
+
+    }
+
+
+
+  }
+}
