@@ -92,23 +92,26 @@ body {
 
 .app__inside {
   width: 100%;
-  height: calc(100% - 60px);
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  padding: 20px 0 40px;
 }
 
 .app__inside .form {
-  position: relative;
+  position: fixed;
   z-index: 2;
-  padding: 0 20px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   height: 100%;
   width: 100%;
   max-width: 1000px;
   display: grid;
   transition: 0.8s;
+  padding: 20px 0;
+  box-sizing: border-box;
 }
 
 .app__inside .form:after {
@@ -125,7 +128,7 @@ body {
 }
 
 .app__inside .form.hide {
-  transform: translateX(100vw);
+  transform: translateX(110%);
 }
 
 .app__inside .form .input {
@@ -164,6 +167,7 @@ body {
   justify-content: center;
   border-radius: 2px;
   transition: 0.5s;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .app__inside .form .task-list .task .task__text {
@@ -206,7 +210,7 @@ body {
 }
 
 .app__inside .board {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   height: 100%;
@@ -219,7 +223,7 @@ body {
 }
 
 .app__inside .board .background {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   height: 100%;
@@ -291,6 +295,11 @@ body {
   opacity: 0;
   transition: 0.5s;
   z-index: -1;
+  border-radius: 3px;
+}
+
+.button:not(.button--icon):hover {
+  transform: scale(1.01);
 }
 
 .button:not(.button--icon):hover:after {
@@ -317,20 +326,19 @@ body {
 }
 
 .button--basic {
-  background-color: #db8401;
+  background: linear-gradient(125deg, #9602d1, #a300ff);
 }
 
 .button--basic:after {
-  box-shadow: 0 0 6px 0 #db8401;
-  background: #db8401;
+  box-shadow: 0 0 10px 0 #9602d1;
 }
 
 .button--prime {
-  background-color: #00720f;
+  background: linear-gradient(125deg, #0068ca, #0084ff);
 }
 
 .button--prime:after {
-  box-shadow: 0 0 6px 0 #00720f;
+  box-shadow: 0 0 10px 0 #0068ca;
 }
 
 .button--square {
