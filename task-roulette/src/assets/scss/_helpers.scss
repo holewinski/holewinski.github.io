@@ -1,0 +1,23 @@
+.after-shadow-box {
+    position: realtive;
+
+    &:after {
+        display: block;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: $transition-time;
+        z-index: -1;
+        border-radius: $border-radius;
+    }
+
+    &:hover,
+    &:focus {
+        &:after {
+            opacity: 1;
+        }
+    }
+
+}

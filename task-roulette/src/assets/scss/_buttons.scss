@@ -1,4 +1,10 @@
 .button {
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+
   &:not(.button--icon) {
     font-size: $font-size-button;
     border-radius: $border-radius;
@@ -11,33 +17,18 @@
     justify-content: center;
     align-items: center;
     border: none;
-    position: relative;
+    @extend .after-shadow-box;
 
-    &:after {
-      display: block;
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: $transition-time;
-      z-index: -1;
-      border-radius: $border-radius;
-    }
 
     &:hover {
       transform: scale(1.01);
-
-      &:after {
-        opacity: 1;
-      }
     }
   }
 
   &--icon {
     background: none;
     border: none;
-    color: #000;
+    color: #fff;
     position: absolute;
     padding: 8px;
     top: 20px;
@@ -49,14 +40,15 @@
     align-items: center;
 
     svg {
-      filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.7));
+      filter:
+        drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.2)) drop-shadow(0 1px rgba(0, 0, 0, 0.7)) drop-shadow(1px 0 rgba(0, 0, 0, 0.7)) drop-shadow(-1px 0 rgba(0, 0, 0, 0.7)) drop-shadow(0 -1px rgba(0, 0, 0, 0.7));
     }
   }
 
   &--basic {
     // border: 2px solid $main-color-fainted;
 
-    background: linear-gradient(125deg, $orange, $orange-glow);
+    background: linear-gradient(45deg, $orange, $orange-glow);
 
     &:after {
       box-shadow: 0 0 10px 0 $main-color;
@@ -65,10 +57,10 @@
   }
 
   &--prime {
-    background: linear-gradient(125deg, rgb(0, 104, 202), rgb(0, 132, 255));
+    background: linear-gradient(45deg, rgb(0, 91, 175), rgb(0, 150, 255));
 
     &:after {
-      box-shadow: 0 0 10px 0 rgb(0, 104, 202);
+      box-shadow: 0 0 10px 0 rgb(0, 150, 255);
     }
   }
 
