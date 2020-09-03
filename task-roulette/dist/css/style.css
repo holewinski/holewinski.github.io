@@ -259,6 +259,10 @@ body {
   background: #000;
 }
 
+.app__inside .board.blur {
+  filter: blur(3px);
+}
+
 .app__inside .board .background {
   position: absolute;
   top: 0;
