@@ -1,3 +1,23 @@
+.after-shadow-box, .button:not(.button--icon) {
+  position: realtive;
+}
+
+.after-shadow-box:after, .button:not(.button--icon):after {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: 0.5s;
+  z-index: -1;
+  border-radius: 3px;
+}
+
+.after-shadow-box:hover:after, .button:not(.button--icon):hover:after, .after-shadow-box:focus:after, .button:not(.button--icon):focus:after {
+  opacity: 1;
+}
+
 @keyframes rotate {
   0% {
     transform: rotate(0deg) scale(1);
@@ -62,6 +82,7 @@ body {
   margin: 0;
   height: 100vh;
   overflow: hidden;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 .gears .svg-inline--fa {
@@ -87,29 +108,36 @@ body {
 }
 
 .app {
+  height: 100vh;
+}
+
+.app__inside {
   width: 100%;
-  height: calc(100% - 60px);
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  padding: 20px 0 40px;
 }
 
-.app .form {
-  position: relative;
+.app__inside .form {
+  position: fixed;
   z-index: 2;
-  padding: 0 20px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   height: 100%;
   width: 100%;
   max-width: 1000px;
   display: grid;
-  left: 0;
-  transition: 0.8s;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
 }
 
-.app .form:after {
-  content: '';
+.app__inside .form:after {
+  content: "";
   display: block;
   width: 100vw;
   height: calc(100% + 60px);
@@ -121,11 +149,11 @@ body {
   z-index: -1;
 }
 
-.app .form.hide {
-  left: 100%;
+.app__inside .form.hide {
+  transform: translateX(110%);
 }
 
-.app .form .input {
+.app__inside .form .input {
   background-color: #2b2b2b;
   color: #c8c8c8;
   border: none;
@@ -133,18 +161,34 @@ body {
   caret-color: #580092;
 }
 
-.app .form .input--error {
-  box-shadow: 0px 0px 10px 3px #cf0023;
+.app__inside .form .input:focus {
+  box-shadow: 0 0 10px 0 #7f00d3;
 }
 
-.app .form .task-list {
+.app__inside .form .input::placeholder {
+  transition: 0.5s;
+}
+
+.app__inside .form .input:focus {
+  outline: none;
+}
+
+.app__inside .form .input:focus::placeholder {
+  color: #c8c8c8;
+}
+
+.app__inside .form .input--error {
+  box-shadow: 0px 0px 10px 0 #cf0023 !important;
+}
+
+.app__inside .form .task-list {
   padding-left: 0;
   list-style: none;
   grid-area: main;
   overflow-y: auto;
 }
 
-.app .form .task-list__error {
+.app__inside .form .task-list__error {
   grid-area: main;
   width: 100%;
   position: absolute;
@@ -153,7 +197,7 @@ body {
   transform: translateY(-50%);
 }
 
-.app .form .task-list .task {
+.app__inside .form .task-list .task {
   margin: 5px 0;
   padding: 5px 0;
   display: flex;
@@ -161,9 +205,10 @@ body {
   justify-content: center;
   border-radius: 2px;
   transition: 0.5s;
+  background: rgba(0, 0, 0, 0.1);
 }
 
-.app .form .task-list .task .task__text {
+.app__inside .form .task-list .task .task__text {
   transition: 0.5s;
   text-align: center;
   position: relative;
@@ -173,37 +218,37 @@ body {
   color: #fff;
 }
 
-.app .form .task-list .task.edit {
-  background-color: rgba(0, 0, 0, 0.2);
+.app__inside .form .task-list .task.edit {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
-.app .form .task-list .task.edit .task__text {
+.app__inside .form .task-list .task.edit .task__text {
   border-color: rgba(255, 255, 255, 0.8);
 }
 
-.app .form .task-list .task.edit button {
+.app__inside .form .task-list .task.edit button {
   opacity: 1;
   transform: scale(1);
 }
 
-.app .form .input-task {
+.app__inside .form .input-task {
   grid-area: input;
   transition: box-shadow 0.2s;
   padding: 5px;
   border-radius: 3px;
 }
 
-.app .form .input-task__error {
+.app__inside .form .input-task__error {
   grid-area: input;
   position: absolute;
   width: calc(100% - 10px);
-  top: 0;
+  bottom: 20px;
   transform: translateY(-100%);
   left: 0%;
 }
 
-.app .board {
-  position: absolute;
+.app__inside .board {
+  position: relative;
   top: 0;
   left: 0;
   height: 100%;
@@ -213,10 +258,16 @@ body {
   align-items: center;
   cursor: pointer;
   background: #000;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
 }
 
-.app .board .background {
-  position: fixed;
+.app__inside .board.blur {
+  filter: blur(5px);
+}
+
+.app__inside .board .background {
+  position: absolute;
   top: 0;
   left: 0;
   height: 100%;
@@ -224,7 +275,7 @@ body {
   background-image: linear-gradient(to right top, #970000, #729b00);
 }
 
-.app .board .board-task {
+.app__inside .board .board-task {
   user-select: none;
   z-index: 1;
   font-size: 50px;
@@ -234,14 +285,14 @@ body {
   transition-delay: 0.3s;
   text-align: center;
   max-width: 100%;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black, 3px 3px 3px rgba(0, 0, 0, 0.7);
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black, -2px 2px black, -2px -2px black, 2px -2px black, 2px 2px black, 3px 3px 3px rgba(0, 0, 0, 0.7);
 }
 
-.app .board.rolling .background {
+.app__inside .board.rolling .background {
   transition: 1s;
 }
 
-.app .board.rolling .board-task {
+.app__inside .board.rolling .board-task {
   animation: rotate 1s;
 }
 
@@ -251,7 +302,7 @@ body {
     grid-template-rows: auto 40px 40px 40px 40px;
     grid-row-gap: 10px;
     grid-column-gap: 10px;
-    grid-template-areas: "main" "input " "addbut" "clear " "roll";
+    grid-template-areas: "main" "input " "addbut" "clear " "roll";
   }
 }
 
@@ -261,8 +312,12 @@ body {
     grid-template-rows: auto 40px 40px;
     grid-row-gap: 10px;
     grid-column-gap: 10px;
-    grid-template-areas: "main main" "input addbut" "clear roll";
+    grid-template-areas: "main main" "input addbut" "clear roll";
   }
+}
+
+.button:active, .button:focus {
+  outline: none;
 }
 
 .button:not(.button--icon) {
@@ -276,28 +331,16 @@ body {
   justify-content: center;
   align-items: center;
   border: none;
-  position: relative;
 }
 
-.button:not(.button--icon):after {
-  display: block;
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: 0.5s;
-  z-index: -1;
-}
-
-.button:not(.button--icon):hover:after {
-  opacity: 1;
+.button:not(.button--icon):hover {
+  transform: scale(1.01);
 }
 
 .button--icon {
   background: none;
   border: none;
-  color: #000;
+  color: #fff;
   position: absolute;
   padding: 8px;
   top: 20px;
@@ -310,24 +353,23 @@ body {
 }
 
 .button--icon svg {
-  filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.2)) drop-shadow(0 1px rgba(0, 0, 0, 0.7)) drop-shadow(1px 0 rgba(0, 0, 0, 0.7)) drop-shadow(-1px 0 rgba(0, 0, 0, 0.7)) drop-shadow(0 -1px rgba(0, 0, 0, 0.7));
 }
 
 .button--basic {
-  background-color: #db8401;
+  background: linear-gradient(45deg, #7b01ac, #a300ff);
 }
 
 .button--basic:after {
-  box-shadow: 0 0 6px 0 #db8401;
-  background: #db8401;
+  box-shadow: 0 0 10px 0 #7b01ac;
 }
 
 .button--prime {
-  background-color: #00720f;
+  background: linear-gradient(45deg, #005baf, #0096ff);
 }
 
 .button--prime:after {
-  box-shadow: 0 0 6px 0 #00720f;
+  box-shadow: 0 0 10px 0 #0096ff;
 }
 
 .button--square {

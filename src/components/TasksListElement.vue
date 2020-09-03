@@ -45,7 +45,7 @@ export default {
       error: false,
       timer: null,
       interval: 1000,
-      maxLength: 115
+      maxLength: 115,
     };
   },
   computed: {
@@ -54,7 +54,7 @@ export default {
     },
     taskLength() {
       return this.propTask.length;
-    }
+    },
   },
   methods: {
     typingTimer() {
@@ -71,7 +71,7 @@ export default {
       } else {
         this.error = true;
       }
-    }
-  }
+    },
+  },
 };
 </script>

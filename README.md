@@ -1,29 +1,24 @@
-# Task Roulette
-Simple fun game created with Vue.js.
+# task-roulette
 
-## Table of contents
-* [Basic informations](#basic-informations)
-* [Technologies](#technologies)
-* [How to run](#how-to-run)
+## Project setup
+```
+npm install
+```
 
-## Basic informations
-This project is a simple fun game.
-Just add tasks and randomly draw one of them.
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-## Technologies
-Project is created with:
-* Vue.js
-* Webpack with Vue-cli
-* Scss
-* Icons are "Font Awesome" - https://fontawesome.com/
+### Compiles and minifies for production
+```
+npm run build
+```
 
-## How to run
-To run this project in developer version you will need webpack with vue cli and scss compiler.
-Clone files from "dev" folder to your webpack folder and run with:
+### Lints and fixes files
 ```
-$ npm run dev
+npm run lint
 ```
-For distribution version clone files from "dist" folder to http server or use npm:
-```
-$ http-server -c-1
-```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

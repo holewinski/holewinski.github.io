@@ -1,13 +1,5 @@
-import Vue from 'vue'
-import App from './App'
-import router from './router'
+import { createApp } from 'vue'
+import App from './App.vue'
 import './registerServiceWorker'
 
-Vue.config.productionTip = false
-
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  render: h => h(App)
-})
+createApp(App).mount('#app')
