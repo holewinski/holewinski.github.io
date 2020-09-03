@@ -1,0 +1,19 @@
+<svg width="210mm" height="297mm" version="1.1" viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg" xmlns:osb="http://www.openswatchbook.org/uri/2009/osb" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <linearGradient id="linearGradient5353">
+   <stop stop-color="#c800ff" offset="0"/>
+   <stop stop-color="#b5f7ff" offset="1"/>
+  </linearGradient>
+  <linearGradient id="linearGradient5337" x1="36.492" x2="177.37" y1="89.57" y2="218.23" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#c800ff" offset="0"/>
+   <stop stop-color="#b5f7ff" offset="1"/>
+  </linearGradient>
+  <linearGradient id="linearGradient5339" x1="37.698" x2="172.52" y1="88.35" y2="223.46" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient5353"/>
+  <linearGradient id="linearGradient5361" x1="37.517" x2="172.58" y1="88.53" y2="223.4" gradientTransform="matrix(1.0467 0 0 1.0467 -5.2223 -7.0858)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient5353"/>
+ </defs>
+ <g stroke="url(#linearGradient5337)" stroke-linecap="round" stroke-width="10">
+  <circle cx="105" cy="156.01" r="95.436" fill="none" stroke="url(#linearGradient5339)" stroke-linecap="round" stroke-linejoin="round" stroke-width="19.123" style="paint-order:markers fill stroke"/>
+ </g>
+ <rect x="43.653" y="95.253" width="122.03" height="122.03" fill="url(#linearGradient5361)" opacity=".945" style="paint-order:markers fill stroke"/>
+ <circle cx="105.02" cy="156.15" r="6.8792" fill="#fff" opacity=".945" style="paint-order:markers fill stroke"/>
+</svg>
