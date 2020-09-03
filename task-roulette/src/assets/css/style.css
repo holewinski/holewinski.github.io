@@ -133,6 +133,8 @@ body {
   transition: 0.8s;
   padding: 20px 10px;
   box-sizing: border-box;
+  transition-timing-function: linear;
+  transition-duration: 0.5s;
 }
 
 .app__inside .form:after {
@@ -257,6 +259,12 @@ body {
   align-items: center;
   cursor: pointer;
   background: #000;
+  transition-timing-function: linear;
+  transition-duration: 0.5s;
+}
+
+.app__inside .board.blur {
+  filter: blur(5px);
 }
 
 .app__inside .board .background {

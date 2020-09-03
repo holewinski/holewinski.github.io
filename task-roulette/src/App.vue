@@ -30,10 +30,12 @@
       </button>
     </transition>
 
-    <main class="board" @click="roll" :class="{ rolling: rolling }">
-      <span class="board-task" :class="{ 'op-0': !play }">{{
-        rolledTask
-      }}</span>
+    <main
+      class="board"
+      @click="roll"
+      :class="{ rolling: rolling, blur: !play }"
+    >
+      <span class="board-task">{{ rolledTask }}</span>
 
       <div
         v-for="(n, index) in backgroundArray"

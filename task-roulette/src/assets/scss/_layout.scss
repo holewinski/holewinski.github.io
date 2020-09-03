@@ -55,6 +55,8 @@ body {
       transition: 0.8s;
       padding: 20px $grid-row-gap;
       box-sizing: border-box;
+      transition-timing-function: linear;
+      transition-duration: $transition-time;
 
       &:after {
         content: "";
@@ -185,6 +187,12 @@ body {
       align-items: center;
       cursor: pointer;
       background: #000;
+      transition-timing-function: linear;
+      transition-duration: $transition-time;
+
+      &.blur {
+        filter: blur(5px);
+      }
 
       .background {
         position: absolute;
