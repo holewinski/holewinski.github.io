@@ -59,7 +59,7 @@
       >
         Lets roll
       </button>
-      <tasks-list v-on:list-change="onListChange" :list="tasksList" />
+      <tasks-list @list-change="onListChange" :list="tasksList" />
       <transition name="slide-fade">
         <span class="error task-list__error" v-show="errorNumber"
           >Please, add at least two tasks.</span
@@ -88,6 +88,12 @@
 <script>
 import TasksList from "./components/TasksList";
 
+class Task {
+  constructor(content, id) {
+    this.cont = content;
+    this.id = id;
+  }
+}
 export default {
   name: "App",
   data() {
@@ -100,6 +106,7 @@ export default {
       errorNumber: false,
       play: false,
       rolling: false,
+      spaceSplit: "!@/#",
       backgroundArray: [
         {
           backgroundImage:
@@ -136,7 +143,7 @@ export default {
       if (str.length > 0) {
         str = str.charAt(0).toUpperCase() + str.slice(1);
         // Push task to task list
-        this.tasksList.push({ cont: str, id: this.taskIndex });
+        this.tasksList.push(new Task(str, this.taskIndex));
         // Clear input
         this.mainTask = "";
         this.errorLength = false;
@@ -149,6 +156,13 @@ export default {
       if (this.tasksList.length > 1) {
         this.errorNumber = false;
         this.play = true;
+
+        let cacheList = "";
+        this.tasksList.forEach((element) => {
+          cacheList += element.cont + this.spaceSplit;
+        });
+        // console.log(cacheList);
+        localStorage.setItem("tasksList", cacheList.trim());
       } else {
         this.errorNumber = true;
       }
@@ -177,7 +191,15 @@ export default {
       }
     },
   },
-
+  created() {
+    let cachedList = localStorage.getItem("tasksList");
+    cachedList = cachedList.split(this.spaceSplit);
+    cachedList.splice(cachedList.length - 1, 1);
+    console.log(cachedList);
+    cachedList.forEach((el, id) => {
+      this.tasksList.push({ cont: el, index: id });
+    });
+  },
   components: {
     TasksList,
   },

@@ -67,7 +67,7 @@ export default {
     changeEmmit() {
       if (this.taskLength > 0) {
         this.error = false;
-        this.$emit("change-task", this.propTask, this.id);
+        // this.$emit("change-task", this.propTask, this.id);
       } else {
         this.error = true;
       }

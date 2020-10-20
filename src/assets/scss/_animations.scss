@@ -20,20 +20,20 @@
     opacity: 1;
   }
 }
-
-.slide-left-enter-active,
-.slide-left-leave-active {
-  transition: 0.3s;
-  height: 31px;
-  top: 0;
+.slide-scale-enter-to,
+.slide-scale-enter-active,
+.slide-scale-leave-active {
+  transition: 0.3s linear;
+  transform: scaleY(1) ;
+  top: 0; 
   overflow: hidden;
+  transform-origin: top;
 }
 
-.slide-left-enter,
-.slide-left-leave-to {
+.slide-scale-enter,
+.slide-scale-leave-to {
   opacity: 0;
-  height: 0;
-  top: -1px;
+  transform: scaleY(0) ;
 
 }
 

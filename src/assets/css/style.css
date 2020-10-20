@@ -37,19 +37,20 @@
   }
 }
 
-.slide-left-enter-active,
-.slide-left-leave-active {
-  transition: 0.3s;
-  height: 31px;
+.slide-scale-enter-to,
+.slide-scale-enter-active,
+.slide-scale-leave-active {
+  transition: 0.3s linear;
+  transform: scaleY(1);
   top: 0;
   overflow: hidden;
+  transform-origin: top;
 }
 
-.slide-left-enter,
-.slide-left-leave-to {
+.slide-scale-enter,
+.slide-scale-leave-to {
   opacity: 0;
-  height: 0;
-  top: -1px;
+  transform: scaleY(0);
 }
 
 .rotate-fade-enter-active {
@@ -204,7 +205,6 @@ body {
   position: relative;
   justify-content: center;
   border-radius: 2px;
-  transition: 0.5s;
   background: rgba(0, 0, 0, 0.1);
 }
 

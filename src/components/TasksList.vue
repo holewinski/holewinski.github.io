@@ -1,5 +1,5 @@
 <template>
-  <transition-group tag="ul" name="slide-left" class="task-list">
+  <transition-group name="slide-scale" tag="ul" class="task-list" mode="out-in">
     <task
       v-for="{ cont, id } in reverseList"
       :active="active"
@@ -8,7 +8,8 @@
       @delete-task="onDeleteTask"
       @change-task="onChange"
       @change-active="changeActive"
-      :key="`#${id}`"
+      :key="`#${id}-${cont}`"
+      appear
     />
   </transition-group>
 </template>
