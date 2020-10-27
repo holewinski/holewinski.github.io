@@ -1,0 +1,89 @@
+.button {
+  box-sizing: border-box;
+  &:active,
+  &:focus {
+    outline: 0;
+user-select: none;
+
+  }
+
+  &:not(.button--icon) {
+    font-size: $font-size-button;
+    border-radius: $border-radius;
+
+    color: #fff;
+    transition: $transition-time;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    @extend .after-shadow-box;
+
+
+    &:hover {
+      transform: scale(1.01);
+    }
+  }
+
+  &--icon {
+    background: none;
+    border: none;
+    color: #fff;
+    position: absolute;
+    padding: 8px;
+    top: 20px;
+    right: 30px;
+    z-index: 5;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      filter:
+        drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.2)) drop-shadow(0 1px rgba(0, 0, 0, 0.7)) drop-shadow(1px 0 rgba(0, 0, 0, 0.7)) drop-shadow(-1px 0 rgba(0, 0, 0, 0.7)) drop-shadow(0 -1px rgba(0, 0, 0, 0.7));
+    }
+  }
+
+  &--basic {
+    // border: 2px solid $main-color-fainted;
+
+    background: linear-gradient(45deg, $orange, $orange-glow);
+
+    &:after {
+      box-shadow: 0 0 10px 0 $main-color;
+      // background: $main-color;
+    }
+  }
+
+  &--prime {
+    background: linear-gradient(45deg, rgb(0, 91, 175), rgb(0, 150, 255));
+
+    &:after {
+      box-shadow: 0 0 10px 0 rgb(0, 150, 255);
+    }
+  }
+
+  &--square {
+    font-size: 17px;
+    padding: 5px 15px;
+    margin-left: 5px;
+    opacity: 0;
+    position: relative;
+    transform: scale(0);
+  }
+
+  &--clear {
+    grid-area: clear;
+  }
+
+  &--roll {
+    grid-area: roll;
+  }
+
+  &--add {
+    grid-area: addbut;
+  }
+}
