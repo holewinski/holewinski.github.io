@@ -6,10 +6,10 @@
       class="task__text input"
       :class="{ readonly: !edit, 'input--error': error }"
       v-model="propTask"
-      :size="taskLength"
       :maxlength="maxLength"
       v-on:keyup="typingTimer"
       v-on:keydown="clearTimeout"
+      placeholder="Please input task"
     />
     <button
       type="button"
@@ -65,9 +65,10 @@ export default {
       clearTimeout(this.timer);
     },
     changeEmmit() {
+      this.$emit("change-task", this.propTask, this.id, true);
+
       if (this.taskLength > 0) {
         this.error = false;
-        // this.$emit("change-task", this.propTask, this.id);
       } else {
         this.error = true;
       }

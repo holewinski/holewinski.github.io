@@ -8,7 +8,7 @@
       @delete-task="onDeleteTask"
       @change-task="onChange"
       @change-active="changeActive"
-      :key="`#${id}-${cont}`"
+      :key="`#${id}`"
       appear
     />
   </transition-group>
@@ -17,7 +17,7 @@
 import TasksListElement from "../components/TasksListElement";
 
 export default {
-  props: ["list"],
+  props: ["list", "play"],
   name: "TasksList",
   data() {
     return {
@@ -44,10 +44,9 @@ export default {
     },
     onChange(task, id) {
       const str = task.trim();
-      if (str.length > 0) {
-        const index = this.tasksList.findIndex((item) => item.id == id);
-        this.tasksList[index].cont = task;
-      }
+
+      const index = this.tasksList.findIndex((item) => item.id == id);
+      this.tasksList[index].cont = task;
     },
   },
   created() {
@@ -59,6 +58,9 @@ export default {
       handler() {
         this.$emit("list-change", this.tasksList);
       },
+    },
+    play(value) {
+      value ? (this.active = null) : null;
     },
     list: function() {
       this.tasksList = this.list;

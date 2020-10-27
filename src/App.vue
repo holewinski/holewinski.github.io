@@ -59,7 +59,7 @@
       >
         Lets roll
       </button>
-      <tasks-list @list-change="onListChange" :list="tasksList" />
+      <tasks-list @list-change="onListChange" :list="tasksList" :play="play" />
       <transition name="slide-fade">
         <span class="error task-list__error" v-show="errorNumber"
           >Please, add at least two tasks.</span
@@ -88,12 +88,6 @@
 <script>
 import TasksList from "./components/TasksList";
 
-class Task {
-  constructor(content, id) {
-    this.cont = content;
-    this.id = id;
-  }
-}
 export default {
   name: "App",
   data() {
@@ -122,6 +116,12 @@ export default {
     };
   },
   methods: {
+    newTask(content, index) {
+      return { cont: content, id: index };
+    },
+    randomFloor(limit) {
+      return Math.floor(Math.random() * limit);
+    },
     onListChange(list) {
       this.rolledTask = "Click to roll";
       this.tasksList = list;
@@ -133,18 +133,15 @@ export default {
     clear() {
       this.tasksList = [];
     },
-    //Function adding new task to task list
     addTask() {
       let str = this.mainTask;
-      // Remove spaces and make forst character big
       str = str.trim();
       this.$refs.inputTask.focus();
 
       if (str.length > 0) {
         str = str.charAt(0).toUpperCase() + str.slice(1);
-        // Push task to task list
-        this.tasksList.push(new Task(str, this.taskIndex));
-        // Clear input
+
+        this.tasksList.push(this.newTask(str, this.taskIndex));
         this.mainTask = "";
         this.errorLength = false;
         this.taskIndex++;
@@ -154,6 +151,7 @@ export default {
     },
     start() {
       if (this.tasksList.length > 1) {
+        this.tasksList = this.tasksList.filter((itm) => itm.cont.length > 0);
         this.errorNumber = false;
         this.play = true;
 
@@ -161,7 +159,6 @@ export default {
         this.tasksList.forEach((element) => {
           cacheList += element.cont + this.spaceSplit;
         });
-        // console.log(cacheList);
         localStorage.setItem("tasksList", cacheList.trim());
       } else {
         this.errorNumber = true;
@@ -170,9 +167,13 @@ export default {
     roll() {
       if (this.rolling != true) {
         let tasksListLength = this.tasksList.length,
-          x = Math.floor(Math.random() * tasksListLength),
-          h1 = Math.floor(Math.random() * 360),
-          h2 = Math.floor(Math.random() * 360);
+          x = this.randomFloor(tasksListLength),
+          h1 = this.randomFloor(360),
+          h2 = this.randomFloor(360);
+        while (Math.abs(h1 - h2) < 70) {
+          console.log(h1, h2, Math.abs(h1 - h2));
+          h2 = this.randomFloor(360);
+        }
         this.rolling = true;
         this.backgroundArray[0].backgroundImage = `linear-gradient(to top right, hsl(
           ${h1}
@@ -193,12 +194,14 @@ export default {
   },
   created() {
     let cachedList = localStorage.getItem("tasksList");
-    cachedList = cachedList.split(this.spaceSplit);
-    cachedList.splice(cachedList.length - 1, 1);
-    console.log(cachedList);
-    cachedList.forEach((el, id) => {
-      this.tasksList.push({ cont: el, index: id });
-    });
+    if (cachedList) {
+      cachedList = cachedList.split(this.spaceSplit);
+      cachedList.splice(cachedList.length - 1, 1);
+      cachedList.forEach((cont, id) => {
+        this.tasksList.push(this.newTask(cont, id));
+        this.taskIndex = id + 1;
+      });
+    }
   },
   components: {
     TasksList,

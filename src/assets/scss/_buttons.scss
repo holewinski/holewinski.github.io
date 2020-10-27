@@ -1,8 +1,10 @@
 .button {
-
+  box-sizing: border-box;
   &:active,
   &:focus {
-    outline: none;
+    outline: 0;
+user-select: none;
+
   }
 
   &:not(.button--icon) {
